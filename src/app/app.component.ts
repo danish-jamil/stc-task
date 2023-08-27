@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { FakeStoreService } from './services';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'stc-task';
+
+  private readonly _fakeStoreService = inject(FakeStoreService);
+
+  $users = this._fakeStoreService.getAllUsers();
+  $products = this._fakeStoreService.getProducts();
 }
