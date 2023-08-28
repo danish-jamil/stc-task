@@ -6,14 +6,16 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatCardModule } from '@angular/material/card';
+import { CommonModule } from '@angular/common';
 
 
 @Component({
   selector: 'stc-product-edit',
   templateUrl: './product-edit.component.html',
-  styleUrls: ['./product-edit.component.css'],
+  styleUrls: ['./product-edit.component.sass'],
   standalone: true,
   imports: [
+    CommonModule,
     MatInputModule,
     MatButtonModule,
     MatSelectModule,
@@ -23,8 +25,9 @@ import { MatCardModule } from '@angular/material/card';
   ]
 })
 export class ProductEditComponent {
-  private fb = inject(FormBuilder);
-  addressForm = this.fb.group({
+  private readonly fb = inject(FormBuilder);
+
+  productForm = this.fb.group({
     company: null,
     firstName: [null, Validators.required],
     lastName: [null, Validators.required],
