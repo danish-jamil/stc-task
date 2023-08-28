@@ -13,6 +13,10 @@ export class ProductsService {
   
   private readonly _http = inject(HttpClient);
 
+  getCategories(): Observable<string[]> {
+    return this._http.get<string[]>(`${this._uri}/categories`);
+  }
+
   
   getProducts(): Observable<Product[]> {
     return this._http.get<Product[]>(`${this._uri}`);
@@ -21,6 +25,4 @@ export class ProductsService {
   getProduct(id: number): Observable<Product> {
     return this._http.get<Product>(`${this._uri}/${id}`);
   }
-
-  
 }

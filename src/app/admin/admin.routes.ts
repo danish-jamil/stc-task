@@ -13,12 +13,12 @@ export const ADMIN_ROUTES: Route[] = [
       },
       {
         path: 'products',
-        loadComponent: async () => ((await import('./pages')).AdminProductsPage),
+        loadComponent: async () => ((await import('./pages')).ProductsPage),
         children: [
           {
             path: '',
             loadComponent: async () => ((await import('./components')).ProductListComponent)
-          }
+          },
         ],
       }
     ]

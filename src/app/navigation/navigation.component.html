@@ -3,9 +3,7 @@
     <mat-toolbar color="primary">
       <span>STC Ecommerce Store</span>
       <ul role="nav" class="nav-links">
-        <li>Home</li>
-        <li>Products</li>
-        <li>Admin</li>
+        <li *ngFor="let item of navItems">{{ item | titlecase }}</li>
       </ul>
     </mat-toolbar>
   </mat-sidenav-content>

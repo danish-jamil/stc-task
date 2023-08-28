@@ -1,15 +1,54 @@
 /* You can add global styles to this file, and also import other style files */
-@use '@angular/material' as mat
+@import '@angular/material/theming'
+// Import other necessary styles
 
-@include mat.core()
 
-html, body 
+// Define your light theme
+$light-theme-primary: mat-palette($mat-blue)
+$light-theme-accent: mat-palette($mat-pink, A200, A100, A400)
+$light-theme-warn: mat-palette($mat-red)
+$light-theme-background: mat-palette($mat-grey, 200)
+
+// TODO: use map containing the keys "color", "typography", and "density"
+$light-theme: mat-light-theme($light-theme-primary, $light-theme-accent, $light-theme-warn)
+
+// Include the light theme in your application
+@include angular-material-theme($light-theme)
+
+$max: 64
+$offset: 4
+$unit: 'px'
+
+@mixin generate-helper-classes($className, $styleName)
+  $i: 0
+  @while $i <= $max
+    #{$className + $i} 
+      #{$styleName}: #{$i + $unit}
+    $i: $i + $offset
+
+
+// Padding helper classes
+@include generate-helper-classes('.p-', padding)
+@include generate-helper-classes('.pt-', padding-top)
+@include generate-helper-classes('.pr-', padding-right)
+@include generate-helper-classes('.pb-', padding-bottom)
+@include generate-helper-classes('.pl-', padding-left)
+
+// Margin helper classes
+@include generate-helper-classes('.m-', margin)
+@include generate-helper-classes('.mt-', margin-top)
+@include generate-helper-classes('.mr-', margin-right)
+@include generate-helper-classes('.mb-', margin-bottom)
+@include generate-helper-classes('.ml-', margin-left)
+
+
+html, body
   margin: 0
   padding: 0
   height: 100%
 
 /* 
-  Overwrite material styles 
+ Overwrite material styles 
 .mat-mdc-card-header-text
   max-width: 100%
   overflow: hidden

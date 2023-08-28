@@ -3,12 +3,12 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
 @Component({
-  selector: 'stc-products',
+  selector: 'stc-admin-products',
   standalone: true,
   imports: [CommonModule, RouterModule],
-  templateUrl: './admin-products.page.html',
-  styleUrls: ['./admin-products.page.sass']
+  templateUrl: './products.page.html',
+  styleUrls: ['./products.page.sass']
 })
-export class AdminProductsPage {
+export class ProductsPage {
 
 }

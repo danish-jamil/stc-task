@@ -14,7 +14,8 @@ import { NavigationComponent } from 'src/app/navigation';
 export class ProductsPage {
   private readonly _productsService = inject(ProductsService);
   
-  $products = this._productsService.getProducts();
+  categories$ = this._productsService.getCategories();
+  products$ = this._productsService.getProducts();
 
   goToProductDetail(product: Product) {
     console.log(product);
