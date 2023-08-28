@@ -1,22 +1,22 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
-import { FakeStoreService } from 'src/app/services';
+import { ProductsService } from 'src/app/services';
 import { ProductCardComponent } from '../../components';
 import { Product } from 'src/app/types';
+import { NavigationComponent } from 'src/app/navigation';
 
 @Component({
   standalone: true,
   templateUrl: './products.page.html',
   styleUrls: ['./products.page.sass'],
-  imports: [CommonModule, ProductCardComponent]
+  imports: [CommonModule, ProductCardComponent, NavigationComponent]
 })
 export class ProductsPage {
-  private readonly _fakeStoreService = inject(FakeStoreService);
+  private readonly _productsService = inject(ProductsService);
+  
+  $products = this._productsService.getProducts();
 
-  trackById(product: Product) {
-    return product ? product.id: 0;
+  goToProductDetail(product: Product) {
+    console.log(product);
   }
-
-  $users = this._fakeStoreService.getAllUsers();
-  $products = this._fakeStoreService.getProducts();
 }

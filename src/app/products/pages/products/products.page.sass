@@ -1,8 +1,10 @@
-.stc-products-page
-  display: grid
-  grid-template-columns: repeat(2, 200px)
-  gap: 16px
+.products-container
+  padding: 16px
+  display: flex
+  flex-direction: column
 
 @media screen and (min-width: 720px)
-  .stc-products-page
-    grid-template-columns: repeat(8, 200px)
+  .products-container
+    gap: 16px
+    display: grid
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr))

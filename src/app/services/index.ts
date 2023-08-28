@@ -1,1 +1,1 @@
-export * from './fake-store.service';
+export * from './products.service';

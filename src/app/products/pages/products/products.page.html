@@ -1,6 +1,8 @@
-<header>Client Header</header>
+<header>
+  <stc-navigation></stc-navigation>
+</header>
 
-<div class="stc-products-page">
+<div class="products-container">
   <stc-product-card
     *ngFor="let product of $products | async; let i = index;"
     [product]="product"

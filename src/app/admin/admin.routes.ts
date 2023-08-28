@@ -3,7 +3,7 @@ import { Route } from "@angular/router";
 export const ADMIN_ROUTES: Route[] = [
   {
     path: '',
-    loadComponent: async () => ((await import('./admin.layout')).AdminLayout),
+    loadComponent: async () => ((await import('./dashboard')).DashboardComponent),
     pathMatch: 'prefix',
     children: [
       {
