@@ -24,6 +24,10 @@ export class ProductsService {
   getProduct(id: number): Observable<Product> {
     return this._http.get<Product>(`${this._uri}/${id}`);
   }
+
+  updateProduct(product: Product) {
+    return this._http.put(`${this._uri}/${product.id}`, product);
+  }
   
   getCategoryProducts(category: string): Observable<Product[]> {
     return this._http.get<Product[]>(`${this._uri}/category/${category}`);

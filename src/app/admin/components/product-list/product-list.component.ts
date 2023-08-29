@@ -9,12 +9,15 @@ import { Dialog, DialogRef } from '@angular/cdk/dialog';
 import { EditProductDialog } from '../../dialogs';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'stc-product-list',
   standalone: true,
   imports: [
     CommonModule,
+    RouterLink,
+    
     MatTableModule,
     MatButtonModule,
     MatIconModule,

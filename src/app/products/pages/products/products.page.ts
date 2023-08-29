@@ -2,7 +2,6 @@ import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { ProductsService } from 'src/app/services';
 import { ProductCardComponent } from '../../components';
-import { Product } from 'src/app/types';
 import { NavigationComponent } from 'src/app/navigation';
 import { BehaviorSubject, filter, switchMap, tap } from 'rxjs';
 
@@ -23,7 +22,8 @@ export class ProductsPage {
   );
 
   products$ = this.category$.pipe(
-    switchMap((category) => this._productsService.getCategoryProducts(category))
+    filter(Boolean),
+    switchMap((category) => this._productsService.getCategoryProducts(category)),
   );
 
   onCategorySelected(category: string) {
