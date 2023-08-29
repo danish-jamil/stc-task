@@ -16,7 +16,7 @@ const routes: Routes = [
     path: 'admin',
     loadChildren: async () =>
       (await import('./admin/admin.routes')).ADMIN_ROUTES,
-    canActivate: [adminRouteGuard],
+    // canActivate: [adminRouteGuard],
   },
   {
     path: 'login',
