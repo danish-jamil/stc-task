@@ -1,1 +1,1 @@
-export * from './admin-route.guard';
+export * from './permission.guard';

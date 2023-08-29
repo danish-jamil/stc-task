@@ -1,8 +1,7 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { adminRouteGuard } from './auth';
+import { Routes } from '@angular/router';
+import { permissionGuard } from './auth';
 
-const routes: Routes = [
+export const AppRoutes: Routes = [
   {
     path: '',
     pathMatch: 'full',
@@ -11,16 +10,27 @@ const routes: Routes = [
   {
     path: 'products',
     loadComponent: async () => (await import('./products')).ProductsPage,
+    canActivate: [permissionGuard],
+    data: {
+      permission: 'user',
+      title: 'Products Page'
+    }
   },
   {
     path: 'admin',
     loadChildren: async () =>
       (await import('./admin/admin.routes')).ADMIN_ROUTES,
-    // canActivate: [adminRouteGuard],
+    canActivate: [permissionGuard],
+    data: {
+      permission: 'admin'
+    }
   },
   {
     path: 'login',
-    loadComponent: async () => (await import('./auth/pages')).LoginPage
+    loadComponent: async () => (await import('./auth/pages')).LoginPage,
+    data: {
+      title: 'Login'
+    },
   },
   {
     path: '**',
@@ -28,9 +38,3 @@ const routes: Routes = [
       (await import('./not-found/not-found.component')).NotFoundComponent,
   },
 ];
-
-@NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule],
-})
-export class AppRoutingModule {}
