@@ -7,7 +7,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
-import { filter, tap } from 'rxjs';
+import { EMPTY, catchError, filter, of, tap } from 'rxjs';
 
 @Component({
   selector: 'stc-login',
@@ -48,9 +48,14 @@ export class LoginPage {
       this._authService
         .login(username!, password!)
         .pipe(
-          filter(Boolean),
-          tap(() => (this.loading = false)),
-          takeUntilDestroyed(this._destroyRef),
+          tap(() => {
+            this.loading = false;
+          }),
+          catchError(() => {
+            this.loading = false;
+            return EMPTY;
+          }),
+          takeUntilDestroyed(this._destroyRef)
         )
         .subscribe(() => {
           if (username === 'admin') {

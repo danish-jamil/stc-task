@@ -1,10 +1,13 @@
 <header>
-  <stc-navigation *ngIf="categories$ | async as categories" [navItems]="categories"></stc-navigation>
+  <stc-navigation
+    *ngIf="categories$ | async as categories"
+    [navItems]="categories"
+    [selectedCategory]="category$.asObservable() | async"
+    (categorySelected)="onCategorySelected($event)"
+  ></stc-navigation>
 </header>
 
-<div class="sidenav">
-  
-</div>
+<div class="sidenav"></div>
 
 <div class="products-container">
   <stc-product-card
@@ -12,4 +15,3 @@
     [product]="product"
   ></stc-product-card>
 </div>
-

@@ -8,7 +8,7 @@ import { RouterModule } from '@angular/router';
   standalone: true,
   imports: [
     RouterModule,
-  ]
+  ],
 })
 export class AppComponent {
   title = 'STC E-Commerce Store';

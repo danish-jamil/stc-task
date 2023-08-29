@@ -3,7 +3,13 @@
     <mat-toolbar color="primary">
       <span>STC Ecommerce Store</span>
       <ul role="nav" class="nav-links">
-        <li *ngFor="let item of navItems">{{ item | titlecase }}</li>
+        <li
+          *ngFor="let item of navItems"
+          [class.active]="selectedCategory === item"
+          (click)="categorySelected.emit(item)"
+        >
+          {{ item | titlecase }}
+        </li>
       </ul>
     </mat-toolbar>
   </mat-sidenav-content>

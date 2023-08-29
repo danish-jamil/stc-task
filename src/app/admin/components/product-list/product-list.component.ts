@@ -33,16 +33,16 @@ export class ProductListComponent {
 
   editButtonClicked(product: Product) {
     console.log(product);
-    this.openDialog();
+    this.openDialog(product);
   }
 
   deleteButtonClicked(product: Product) {
     console.log(product);
   }
 
-  openDialog(): void {
+  openDialog(product: Product): void {
     const dialogRef = this._dialog.open(EditProductDialog, {
-      data: {},
+      data: product,
     });
 
     dialogRef.closed

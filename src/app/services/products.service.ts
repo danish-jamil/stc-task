@@ -12,17 +12,20 @@ export class ProductsService {
   private readonly _uri = this._baseUrl + '/products';
   
   private readonly _http = inject(HttpClient);
-
+  
   getCategories(): Observable<string[]> {
     return this._http.get<string[]>(`${this._uri}/categories`);
   }
 
-  
   getProducts(): Observable<Product[]> {
     return this._http.get<Product[]>(`${this._uri}`);
   }
 
   getProduct(id: number): Observable<Product> {
     return this._http.get<Product>(`${this._uri}/${id}`);
+  }
+  
+  getCategoryProducts(category: string): Observable<Product[]> {
+    return this._http.get<Product[]>(`${this._uri}/category/${category}`);
   }
 }

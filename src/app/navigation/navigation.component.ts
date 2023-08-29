@@ -1,4 +1,4 @@
-import { Component, Input, inject } from '@angular/core';
+import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
@@ -24,7 +24,21 @@ import { CommonModule } from '@angular/common';
   ],
 })
 export class NavigationComponent {
-  @Input() navItems: string[] = [];
+  private _navigationItems: string[] = [];
+  
+  @Input()
+  selectedCategory?: string | null;
+
+  @Input()
+  set navItems(value: string[]) {
+    this.selectedCategory = value.length ? value[0]: null;
+    this._navigationItems = value;
+  }
+  get navItems(): string[] {
+    return this._navigationItems;
+  }
+
+  @Output() categorySelected = new EventEmitter<string>();
 
   private breakpointObserver = inject(BreakpointObserver);
 

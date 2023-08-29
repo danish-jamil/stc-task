@@ -1,6 +1,10 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, Optional } from '@angular/core';
 import { CommonModule, NgIf } from '@angular/common';
-import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import {
+  MAT_DIALOG_DATA,
+  MatDialogModule,
+  MatDialogRef,
+} from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
@@ -11,29 +15,20 @@ import { EditProductDialogData } from '../../types';
   standalone: true,
   imports: [
     CommonModule,
+    NgIf,
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    NgIf,
     MatDialogModule,
+    MatButtonModule,
   ],
   templateUrl: './edit-product.dialog.html',
   styleUrls: ['./edit-product.dialog.sass'],
-  providers: [
-    {
-      provide: MatDialogRef,
-      useValue: {},
-    },
-    {
-      provide: MAT_DIALOG_DATA,
-      useValue: {}
-    }
-  ]
 })
 export class EditProductDialog {
   constructor(
-    public dialogRef: MatDialogRef<EditProductDialog>,
-    @Inject(MAT_DIALOG_DATA) public data: EditProductDialogData,
+    @Optional() public dialogRef: MatDialogRef<EditProductDialog>,
+    @Optional() @Inject(MAT_DIALOG_DATA) public product: EditProductDialogData
   ) {}
 
   onCancelClick(): void {
